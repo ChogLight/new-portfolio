@@ -155,7 +155,7 @@
                     <i class="fa-brands fa-react"></i>
                 </div>
                 
-                <div class="text-sm md:text-lg flex justify-between mt-5">
+                <div class="text-sm md:text-lg flex justify-between mt-4">
                     <a
                         class="duration-300 text-white font-bold text-center bg-cyan-600 p-3 rounded-xl shadow-lg" 
                         href="https://expenses-control-chog.netlify.app/"
