@@ -1,7 +1,32 @@
 <script>
     import Typewriter from 'svelte-typewriter/Typewriter.svelte'
+    import Modal from '../components/Modal.svelte';
     let y
     let showNav = false
+    let modular = false
+    let content = {
+        title: '',
+        text: '',
+        images:[]
+    }
+    let pokeTeamContent = {
+        title: 'PokeTeam',
+        text: '',
+        images:[]
+    }
+
+    let expensesContent = {
+        title: 'Expenses control app',
+        text: '',
+        images:[]
+    }
+
+    let pfcContent = {
+        title: 'PFC OneNet',
+        text: '',
+        images:[]
+    }
+
     function scrollIntoView({ target }) {
 		const el = document.querySelector(target.getAttribute('href'));
 		if (!el) return;
@@ -19,7 +44,7 @@
         <div class="flex md:gap-12 gap-5 font-semibold md:text-lg text-sm ">
             <a class="hover:text-slate-600 duration-300" href="#about-me" on:click|preventDefault={scrollIntoView}>About me</a>
             <a class="hover:text-slate-600 duration-300" href="#my-projects" on:click|preventDefault={scrollIntoView}>My projects</a>
-            <a class="hover:text-slate-600 duration-300" href="#about-me" on:click|preventDefault={scrollIntoView}>My experience</a>
+            <a class="hover:text-slate-600 duration-300" href="#my-experience" on:click|preventDefault={scrollIntoView}>My experience</a>
             <a class="hover:text-slate-600 duration-300" href="#about-me" on:click|preventDefault={scrollIntoView}>Contact me</a>
         </div>
         <div class="flex gap-5">
@@ -28,7 +53,7 @@
         </div>
     </nav>
     <!--Mobile navBar-->
-    <nav class={`md:hidden text-2xl text-white duration-200 sticky top-0 flex flex-col justify-between px-5 py-5 ${y>95?'bg-black bg-opacity-10 text-white':''}`}>
+    <nav class={`md:hidden text-2xl text-white duration-200 sticky top-0 flex flex-col justify-between px-5 py-5 ${y>95?`bg-black bg-opacity-${showNav?'70':'10'} text-white`:''}`}>
         <div class="flex justify-between">
             <button class="text-left mx-3 mb-5" on:click={() => {showNav? showNav = false:showNav = true}}><i class="fa-solid fa-bars"></i></button>
             <div class="flex gap-5">
@@ -40,7 +65,7 @@
         <div class={`duration-500 md:hidden ${showNav?'flex':'invisible'} flex-col md:gap-12 gap-5 font-semibold md:text-lg text-sm`}>
             <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[200ms]':'opacity-0'}`} href="#about-me" on:click|preventDefault={scrollIntoView}>About me</a>
             <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[600ms]':'opacity-0'}`} href="#my-projects" on:click|preventDefault={scrollIntoView}>My projects</a>
-            <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[1000ms]':'opacity-0'}`} href="#about-me" on:click|preventDefault={scrollIntoView}>My experience</a>
+            <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[1000ms]':'opacity-0'}`} href="#my-experience" on:click|preventDefault={scrollIntoView}>My experience</a>
             <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[1400ms]':'opacity-0'}`} href="#about-me" on:click|preventDefault={scrollIntoView}>Contact me</a>
         </div>
     </nav>
@@ -87,13 +112,21 @@
             <div>
                 <h3 class="text-white md:text-3xl text-xl font-bold my-10">Poketeam</h3>
                 <div>
-                    <img class="md:rounded-3xl rounded-lg mb-5" src="/poketeam.png" alt="poketeam"/>
+                    <button on:click={() => {
+                        content = pokeTeamContent;
+                        modular = true;
+                    }}>
+                        <img class="md:rounded-3xl rounded-lg mb-5" src="/poketeam.png" alt="poketeam"/>
+                    </button>
                 </div>
-                <div class="flex gap-3 text-white md:text-lg text-sm font-semibold">
+                <div class="flex gap-3 text-white md:text-5xl text-4xl font-semibold">
+                    <i class="fa-brands fa-html5"></i>
                     <i class="fa-brands fa-css3-alt"></i>
+                    <i class="fa-brands fa-square-js"></i>
+                    <i class="fa-solid fa-database"></i>
 
                 </div>
-                <div class="flex gap-20 mt-5 text-sm md:text-lg">
+                <div class="flex justify-between gap-20 mt-4 text-sm md:text-lg">
                     <a
                         class="duration-300 text-white font-bold text-center bg-cyan-600 p-3 rounded-xl shadow-lg" 
                         href="https://poketeam-chog.netlify.app/"
@@ -110,10 +143,19 @@
             </div>
             <div>
                 <h3 class="text-white md:text-3xl text-xl font-bold my-10">Expenses control</h3>
-                <img class="md:rounded-3xl rounded-lg mb-5" src="/expenses-control.png" alt="poketeam"/>
-                <p class="text-white md:text-lg text-sm font-semibold">React/Vanilla CSS</p>
+                <button on:click={() => {
+                    content = expensesContent;
+                    modular = true;
+                }}>
+                    <img class="md:rounded-3xl rounded-lg mb-5" src="/expenses-control.png" alt="poketeam"/>
+                </button>
+                <div class="flex gap-3 text-white md:text-5xl text-4xl font-semibold">
+                    <i class="fa-brands fa-html5"></i>
+                    <i class="fa-brands fa-css3-alt"></i>
+                    <i class="fa-brands fa-react"></i>
+                </div>
                 
-                <div class="text-sm md:text-lg flex gap-20 mt-5">
+                <div class="text-sm md:text-lg flex justify-between mt-5">
                     <a
                         class="duration-300 text-white font-bold text-center bg-cyan-600 p-3 rounded-xl shadow-lg" 
                         href="https://expenses-control-chog.netlify.app/"
@@ -130,22 +172,70 @@
             </div>
             <div>
                 <h3 class="text-white md:text-3xl text-xl font-bold my-10">PFCOneNet</h3>
-                <img class="md:rounded-3xl rounded-lg mb-5" src="/pfc-onenet.png" alt="pfcone"/>
-                <p class="text-white md:text-lg text-sm font-semibold">Express.js/EJS/Bootstrap</p>
+                <button on:click={() =>{
+                    content = pfcContent;
+                    modular = true
+                }}>
+                    <img class="md:rounded-3xl rounded-lg mb-5" src="/pfc-onenet.png" alt="pfcone"/>
+                </button>
+                
+                <div class="flex gap-3 text-white md:text-5xl text-4xl font-semibold">
+                    <i class="fa-brands fa-html5"></i>
+                    <i class="fa-brands fa-bootstrap"></i>
+                    <i class="fa-brands fa-square-js"></i>
+                    <i class="fa-brands fa-node-js"></i>
+                </div>
             
             </div>
             
     
         </div>
-        <div class="my-20">
+        <div id="my-experience" class="my-20">
             <h1 class="md:text-6xl text-4xl font-bold text-white mb-10">My experience</h1>
-            <p>
-    
-            </p>
+            <div>
+                <div class="md:flex justify-between">
+                    <h3 class="text-2xl md:text-4xl font-bold">Math, Programming and Chemistry Tutor</h3>
+                    <h3 class="mt-5 md:mt-0 text-2xl md:text-4xl font-semibold">April 2021-Present</h3>
+                </div>
+                <div class="md:flex justify-between mt-5">
+                    <h5 class="text-lg md:text-xl italic">Paper tutoring</h5>
+                    <h5 class="mt-5 md:mt-0 text-lg md:text-xl italic">Toronto, ON</h5>
+                    
+                </div>
+                <ul class="mt-10 md:text-lg text-sm text-justify list-disc list-inside">
+                    <li>Tutored students of multiple ages (K-12) in subjects as programming, chemistry, and math using a chat-based software.</li>
+                    <li>Graded other's tutor sessions to assure the quality of the tutoring service.</li>
+                    <li>Created a clone of the chat tool and added dark mode.</li>
+                </ul>
+            </div>
+            <div class="mt-20">
+                <div class="md:flex justify-between">
+                    <h3 class="text-2xl md:text-4xl font-bold">Software engineering technician</h3>
+                    <h3 class="mt-5 md:mt-0 text-2xl md:text-4xl font-semibold">January 2022- June 2022</h3>
+                </div>
+                <div class="md:flex justify-between mt-5">
+                    <h5 class="text-lg md:text-xl italic">Centennial College/PFC flexible circuits</h5>
+                    <h5 class="md:mt-0 mt-5 text-lg md:text-xl italic">Toronto, ON</h5>
+                    
+                </div>
+                <ul class="mt-10 md:text-lg text-sm text-justify list-disc list-inside">
+                    <li>Participated in the building of an intranet for a circuits company.</li>
+                    <li>Managed the Github repository and merged the commits when correctly tested.</li>
+                    <li>Build UI of the intranet using EJS.</li>
+                    <li>Helped in the bulding of the website backend using Express.js resulting in a functional authentication system</li>
+                </ul>
+            </div>
         </div>
+        
     </div>
-    
+    <Modal bind:modular = {modular}>
+        <h1 class="text-2xl font-bold leading-6 text-gray-900" id="modal-title">{content.title}</h1>
+        <div class="mt-2">
+            <p class="text-sm text-gray-500">{content.text}</p>
+        </div>
+    </Modal>
 </div>
+
 
 <svelte:window bind:scrollY={y}/>
 
