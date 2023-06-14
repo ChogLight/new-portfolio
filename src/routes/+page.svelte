@@ -11,8 +11,8 @@
     }
     let pokeTeamContent = {
         title: 'PokeTeam',
-        text: '',
-        images:[]
+        text: 'The PokeTeam web app surged as a small project that grew in size and complexity with time. The project is build using SvelteKit, MongoDB, and TailwindCSS.',
+        images:['/poketeam/login.png','/poketeam/myteams.png','/poketeam/pokedex.png','/poketeam/stats.png']
     }
 
     let expensesContent = {
@@ -128,13 +128,13 @@
                 </div>
                 <div class="flex justify-between gap-20 mt-4 text-sm md:text-lg">
                     <a
-                        class="duration-300 text-white font-bold text-center bg-cyan-600 p-3 rounded-xl shadow-lg" 
+                        class="duration-300 text-white font-bold text-center hover:bg-cyan-800 bg-cyan-600 p-3 rounded-xl shadow-lg" 
                         href="https://poketeam-chog.netlify.app/"
                         target="_blank">
                             Website
                     </a>
                     <a
-                        class="duration-300 text-white font-bold text-center bg-cyan-600 p-3 rounded-xl shadow-lg" 
+                        class="duration-300 text-white font-bold text-center hover:bg-cyan-800 bg-cyan-600 p-3 rounded-xl shadow-lg" 
                         href="https://github.com/ChogLight/poketeam"
                         target="_blank">
                             Github
@@ -157,13 +157,13 @@
                 
                 <div class="text-sm md:text-lg flex justify-between mt-4">
                     <a
-                        class="duration-300 text-white font-bold text-center bg-cyan-600 p-3 rounded-xl shadow-lg" 
+                        class="duration-300 text-white font-bold text-center hover:bg-cyan-800 bg-cyan-600 p-3 rounded-xl shadow-lg" 
                         href="https://expenses-control-chog.netlify.app/"
                         target="_blank">
                             Website
                     </a>
                     <a
-                        class="duration-300 text-white font-bold text-center bg-cyan-600 p-3 rounded-xl shadow-lg" 
+                        class="duration-300 text-white font-bold text-center hover:bg-cyan-800 bg-cyan-600 p-3 rounded-xl shadow-lg" 
                         href="https://github.com/ChogLight/expenses-control"
                         target="_blank">
                             Github
@@ -229,10 +229,16 @@
         
     </div>
     <Modal bind:modular = {modular}>
-        <h1 class="text-2xl font-bold leading-6 text-gray-900" id="modal-title">{content.title}</h1>
-        <div class="mt-2">
-            <p class="text-sm text-gray-500">{content.text}</p>
+        <div class="flex gap-10">
+            <div>
+                <h1 class="text-2xl font-bold leading-6 text-gray-900" id="modal-title">{content.title}</h1>
+                <div class="mt-2">
+                    <p class="text-sm text-gray-500">{content.text}</p>
+                </div>
+            </div>
+            
         </div>
+        
     </Modal>
 </div>
 
