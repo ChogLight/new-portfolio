@@ -1,6 +1,6 @@
 <script>
     import Typewriter from 'svelte-typewriter/Typewriter.svelte'
-    import Modal from '../components/Modal.svelte';
+	import Carousel from '../components/Carousel.svelte';
     let y
     let showNav = false
     let modular = false
@@ -12,7 +12,7 @@
     let pokeTeamContent = {
         title: 'PokeTeam',
         text: 'The PokeTeam web app surged as a small project that grew in size and complexity with time. The project is build using SvelteKit, MongoDB, and TailwindCSS.',
-        images:['/poketeam/login.png','/poketeam/myteams.png','/poketeam/pokedex.png','/poketeam/stats.png']
+        images:['/poketeam/poketeam.png','/poketeam/login.png','/poketeam/myteams.png','/poketeam/pokedex.png','/poketeam/stats.png']
     }
 
     let expensesContent = {
@@ -45,7 +45,7 @@
             <a class="hover:text-slate-600 duration-300" href="#about-me" on:click|preventDefault={scrollIntoView}>About me</a>
             <a class="hover:text-slate-600 duration-300" href="#my-projects" on:click|preventDefault={scrollIntoView}>My projects</a>
             <a class="hover:text-slate-600 duration-300" href="#my-experience" on:click|preventDefault={scrollIntoView}>My experience</a>
-            <a class="hover:text-slate-600 duration-300" href="#about-me" on:click|preventDefault={scrollIntoView}>Contact me</a>
+            
         </div>
         <div class="flex gap-5">
             <a class="text-3xl" href="https://www.linkedin.com/in/jsgalvis/" target="_blank" ><i class="fa-brands fa-linkedin"></i></a>
@@ -53,7 +53,7 @@
         </div>
     </nav>
     <!--Mobile navBar-->
-    <nav class={`md:hidden text-2xl text-white duration-200 sticky top-0 flex flex-col justify-between px-5 py-5 ${y>95?`bg-black bg-opacity-${showNav?'70':'10'} text-white`:''}`}>
+    <nav class={`md:hidden text-2xl text-white duration-200 sticky top-0 flex flex-col justify-between px-5 py-5 ${y>95?`${showNav?'bg-black/70':'bg-black/10'} text-white`:''}`}>
         <div class="flex justify-between">
             <button class="text-left mx-3 mb-5" on:click={() => {showNav? showNav = false:showNav = true}}><i class="fa-solid fa-bars"></i></button>
             <div class="flex gap-5">
@@ -63,13 +63,14 @@
         </div>
        
         <div class={`duration-500 md:hidden ${showNav?'flex':'invisible'} flex-col md:gap-12 gap-5 font-semibold md:text-lg text-sm`}>
-            <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[200ms]':'opacity-0'}`} href="#about-me" on:click|preventDefault={scrollIntoView}>About me</a>
-            <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[600ms]':'opacity-0'}`} href="#my-projects" on:click|preventDefault={scrollIntoView}>My projects</a>
-            <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[1000ms]':'opacity-0'}`} href="#my-experience" on:click|preventDefault={scrollIntoView}>My experience</a>
-            <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[1400ms]':'opacity-0'}`} href="#about-me" on:click|preventDefault={scrollIntoView}>Contact me</a>
+            <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[300ms]':'opacity-0'}`} href="#about-me" on:click|preventDefault={scrollIntoView}>About me</a>
+            <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[700ms]':'opacity-0'}`} href="#my-projects" on:click|preventDefault={scrollIntoView}>My projects</a>
+            <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[1100ms]':'opacity-0'}`} href="#my-experience" on:click|preventDefault={scrollIntoView}>My experience</a>
         </div>
     </nav>
+    <!--Body-->
     <div class="md:mx-40 mx-10">
+        <!--About Me-->
         <div id="about-me" class="flex flex-col md:flex-row gap-12 md:my-20 text-white">
             <img class="hidden md:block rounded-3xl md:basis-1/2 basis-1/5" src='/profile_pic.jpg' alt="profile_pic" width="50%%"/>
             <div class="md:basis-1/2 basis-4/5 flex flex-col gap-5">
@@ -98,28 +99,20 @@
                 
             </div>
         </div>
-    
-    
+        <!--My projects-->
         <div class="mt-10">
             <h1 id="my-projects" class="md:text-6xl text-4xl font-bold text-white">My projects</h1>
             <p class="mt-10 md:text-lg text-sm text-justify">
                 During my time in the world of web development I have had the chance of building interesting web apps.
                 From websites made for fun or practicing to commercial independent projects. Here is a small list of the projects I have made 
-                and participated in. Click on the images to check a small description of the project.
+                and participated in. Click on the image play button to check some images of the projects.
             </p>
         </div>
         <div class="md:grid grid-cols-2 gap-12 my-10">
             <div>
                 <h3 class="text-white md:text-3xl text-xl font-bold my-10">Poketeam</h3>
-                <div>
-                    <button on:click={() => {
-                        content = pokeTeamContent;
-                        modular = true;
-                    }}>
-                        <img class="md:rounded-3xl rounded-lg mb-5" src="/poketeam.png" alt="poketeam"/>
-                    </button>
-                </div>
-                <div class="flex gap-3 text-white md:text-5xl text-4xl font-semibold">
+                <Carousel images = {pokeTeamContent.images}/>
+                <div class="flex mt-5 gap-3 text-white md:text-5xl text-4xl font-semibold">
                     <i class="fa-brands fa-html5"></i>
                     <i class="fa-brands fa-css3-alt"></i>
                     <i class="fa-brands fa-square-js"></i>
@@ -190,7 +183,8 @@
             
     
         </div>
-        <div id="my-experience" class="my-20">
+        <!--My experience-->
+        <div id="my-experience" class="py-20">
             <h1 class="md:text-6xl text-4xl font-bold text-white mb-10">My experience</h1>
             <div>
                 <div class="md:flex justify-between">
@@ -228,18 +222,6 @@
         </div>
         
     </div>
-    <Modal bind:modular = {modular}>
-        <div class="flex gap-10">
-            <div>
-                <h1 class="text-2xl font-bold leading-6 text-gray-900" id="modal-title">{content.title}</h1>
-                <div class="mt-2">
-                    <p class="text-sm text-gray-500">{content.text}</p>
-                </div>
-            </div>
-            
-        </div>
-        
-    </Modal>
 </div>
 
 
