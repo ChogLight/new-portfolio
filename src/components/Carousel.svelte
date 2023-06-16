@@ -40,12 +40,12 @@
     }
 </script>
 <div class="carousel">
-    <div class="carousel-item relative w-full">
+    <div class="group carousel-item relative w-full">
         <img src={images[i]} class="w-full rounded-2xl max-h-[265.233px]" alt="carousel" />
         <div class="absolute flex justify-between transform -translate-y-1/2 -translate-x-1/2 left-1/2 top-1/2">
           <button 
             on:click={()=>{checkPlayState()}} 
-            class={`hover:opacity-100 duration-700 btn btn-circle ${button_visibility}`}><i class={icon}></i></button> 
+            class={`group-hover:opacity-100 duration-700 btn btn-circle ${button_visibility}`}><i class={icon}></i></button> 
         </div>
       </div> 
   </div>
