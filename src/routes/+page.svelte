@@ -1,230 +1,141 @@
+
 <script>
-    import Typewriter from 'svelte-typewriter/Typewriter.svelte'
-	import Carousel from '../components/Carousel.svelte';
-    let y
-    let showNav = false
-    let modular = false
-    let content = {
-        title: '',
-        text: '',
-        images:[]
-    }
-    let pokeTeamContent = {
-        title: 'PokeTeam',
-        text: 'The PokeTeam web app surged as a small project that grew in size and complexity with time. The project is build using SvelteKit, MongoDB, and TailwindCSS.',
-        images:['/poketeam/poketeam.png','/poketeam/login.png','/poketeam/myteams.png','/poketeam/pokedex.png','/poketeam/stats.png']
-    }
+    import Typewriter from "svelte-typewriter/Typewriter.svelte";
+    import { browser } from '$app/environment';
+    let darkMode = true
+    let languages = ['Javascript', 'HTML', 'CSS', 'TailwindCSS', 'React','Next.js', 'Express', 'Git', 'Svelte', 'Figma', 'Python']
+    function handleSwitchDarkMode() {
+        darkMode = !darkMode;
 
-    let expensesContent = {
-        title: 'Expenses control app',
-        text: '',
-        images:[]
+        darkMode
+            ? document.documentElement.classList.add('dark')
+            : document.documentElement.classList.remove('dark');
     }
-
-    let pfcContent = {
-        title: 'PFC OneNet',
-        text: '',
-        images:[]
+    if (browser) {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+            darkMode = true;
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkMode = false;
+        }
     }
-
-    function scrollIntoView({ target }) {
-		const el = document.querySelector(target.getAttribute('href'));
-		if (!el) return;
-    el.scrollIntoView({
-      behavior: 'smooth'
-    });
-    
-  }
-  
-
 </script>
-<div class="text-white">
-    <!--Desktop NavBar-->
-    <nav class={`hidden  text-white duration-200 sticky top-0 md:flex justify-between md:px-10 py-5 ${y>95?'bg-black bg-opacity-10 text-white':''}`}>
-        <div class="flex md:gap-12 gap-5 font-semibold md:text-lg text-sm ">
-            <a class="hover:text-slate-600 duration-300" href="#about-me" on:click|preventDefault={scrollIntoView}>About me</a>
-            <a class="hover:text-slate-600 duration-300" href="#my-projects" on:click|preventDefault={scrollIntoView}>My projects</a>
-            <a class="hover:text-slate-600 duration-300" href="#my-experience" on:click|preventDefault={scrollIntoView}>My experience</a>
-            
-        </div>
-        <div class="flex gap-5">
-            <a class="text-3xl" href="https://www.linkedin.com/in/jsgalvis/" target="_blank" ><i class="fa-brands fa-linkedin"></i></a>
-            <a class="text-3xl" href="https://github.com/ChogLight" target="_blank" ><i class="fa-brands fa-github"></i></a>
-        </div>
-    </nav>
-    <!--Mobile navBar-->
-    <nav class={`md:hidden text-2xl text-white duration-200 sticky top-0 flex flex-col justify-between px-5 py-5 ${y>95?`${showNav?'bg-black/70':'bg-black/10'} text-white`:''}`}>
-        <div class="flex justify-between">
-            <button class="text-left mx-3 mb-5" on:click={() => {showNav? showNav = false:showNav = true}}><i class="fa-solid fa-bars"></i></button>
-            <div class="flex gap-5">
-                <a class="text-3xl" href="https://www.linkedin.com/in/jsgalvis/" target="_blank" ><i class="fa-brands fa-linkedin"></i></a>
-                <a class="text-3xl" href="https://github.com/ChogLight" target="_blank" ><i class="fa-brands fa-github"></i></a>
-            </div>
-        </div>
-       
-        <div class={`duration-500 md:hidden ${showNav?'flex':'invisible'} flex-col md:gap-12 gap-5 font-semibold md:text-lg text-sm`}>
-            <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[300ms]':'opacity-0'}`} href="#about-me" on:click|preventDefault={scrollIntoView}>About me</a>
-            <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[700ms]':'opacity-0'}`} href="#my-projects" on:click|preventDefault={scrollIntoView}>My projects</a>
-            <a class={` hover:text-slate-600 ${showNav?'opacity-100 duration-[1100ms]':'opacity-0'}`} href="#my-experience" on:click|preventDefault={scrollIntoView}>My experience</a>
-        </div>
-    </nav>
-    <!--Body-->
-    <div class="md:mx-40 mx-10">
-        <!--About Me-->
-        <div id="about-me" class="flex flex-col md:flex-row gap-12 md:my-20 text-white">
-            <img class="hidden md:block rounded-3xl md:basis-1/2 basis-1/5" src='/profile_pic.jpg' alt="profile_pic" width="50%%"/>
-            <div class="md:basis-1/2 basis-4/5 flex flex-col gap-5">
-                <h1 class="md:text-6xl text-4xl font-bold">Juan Galvis</h1>
-                <img class="md:hidden rounded-3xl md:basis-1/2 basis-1/5" src='/profile_pic.jpg' alt="profile_pic" width="50%%"/>
-                <h2 class="md:text-4xl text-2xl font-semibold">Web developer</h2>
-                <p class=" text-justify md:text-lg text-sm">
-                    I'm a full stack developer gratuated from Centennial College in Toronto Canada.
+<div class="text-white w-5/6  m-auto my-10">
+   <div class="grid md:grid-cols-4 grid-cols-3 gap-5 bg-transparent">
+        <!-- About me -->
+        <div class="md:flex gap-2 bg-purple-900 text-white rounded-xl col-span-3">
+            <div class="flex flex-col gap-4 my-16 p-5 self-end">
+                <h1 class="text-4xl font-bold">👋 Hi! I'm Juan Galvis</h1>
+                <p class="text-sm font-semibold text-left">
+                    I'm a full stack developer gratuated from Centennial College in Toronto Canada. 
                     I can assure you that my coding skills, professionalism, team work, and curiosity are great assets to bring to your company.
-                    
-                    My skill set consists in: 
+                    My skill set consists in:
+                        <Typewriter  --cursor-color="#7a117f" --cursor-width="10px" mode="loop" interval="50" unwriteInterval= "50">
+                            {#each languages as language}
+                            <h1 class="md:text-6xl text-2xl font-bold">{language}</h1>
+                            {/each}
+                        </Typewriter>                    
                 </p>
-                <Typewriter --cursor-color="#7a117f" --cursor-width="10px" mode="loop" interval="50" unwriteInterval= "50">
-                    <h1 class="md:text-6xl text-2xl font-bold">Javascript</h1>
-                    <h1 class="md:text-6xl text-2xl font-bold">HTML</h1>
-                    <h1 class="md:text-6xl text-2xl font-bold">CSS</h1>
-                    <h1 class="md:text-6xl text-2xl font-bold">TailwindCSS</h1>
-                    <h1 class="md:text-6xl text-2xl font-bold">React</h1>
-                    <h1 class="md:text-6xl text-2xl font-bold">Next.js</h1>
-                    <h1 class="md:text-6xl text-2xl font-bold">Express.js</h1>
-                    <h1 class="md:text-6xl text-2xl font-bold">Git</h1>
-                    <h1 class="md:text-6xl text-2xl font-bold">Svelte</h1>
-                    <h1 class="md:text-6xl text-2xl font-bold">Figma</h1>
-                    <h1 class="md:text-6xl text-2xl font-bold">Python</h1>
-                </Typewriter>
-                
             </div>
+            <img class="" src="/profile_pic.png" alt="profile_pic"/>
         </div>
-        <!--My projects-->
-        <div class="mt-10">
-            <h1 id="my-projects" class="md:text-6xl text-4xl font-bold text-white">My projects</h1>
-            <p class="mt-10 md:text-lg text-sm text-justify">
-                During my time in the world of web development I have had the chance of building interesting web apps.
-                From websites made for fun or practicing to commercial independent projects. Here is a small list of the projects I have made 
-                and participated in. Click on the image play button to check some images of the projects.
+        <!-- Language and dark mode -->
+        <div class="grid grid-rows-2 gap-5 place-items-stretch">
+            <div class=" bg-purple-900 rounded-xl flex items-center justify-center">
+                <h1 class="">EN</h1>
+            </div>
+            <div class=" bg-purple-900 rounded-xl flex flex-col gap-3 items-center justify-center p-2 md:p-0">
+                <input
+                    class="mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-neutral-300 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-neutral-100 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-primary checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none checked:after:bg-primary checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)] checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-[''] hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:bg-neutral-600 dark:after:bg-neutral-400 dark:checked:bg-primary dark:checked:after:bg-primary dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca]"
+                    type="checkbox"
+                    role="switch"
+                    id="flexSwitchCheckDefault"
+                    bind:checked={darkMode}
+                    on:click={handleSwitchDarkMode} />
+                    <label
+                        class="inline-block pl-[0.15rem] hover:cursor-pointer md:text-lg text-xs font-bold"
+                        for="flexSwitchCheckDefault"
+                        >
+                        Dark Mode
+                    </label>
+            </div>
+            
+        </div>
+        <!-- Age -->
+        <div class=" bg-red-500 rounded-xl flex flex-col gap-3 items-center justify-center px-10 py-16">
+            <p class="text-sm">
+                AGE
             </p>
+            <h1 class="text-6xl font-bold">
+                28
+            </h1>
+            <h4 class="text-xl font-semibold">
+                Years old
+            </h4>
         </div>
-        <div class="md:grid grid-cols-2 gap-12 my-10">
-            <div>
-                <h3 class="text-white md:text-3xl text-xl font-bold my-10">Poketeam</h3>
-                <Carousel images = {pokeTeamContent.images}/>
-                <div class="flex mt-5 gap-3 text-white md:text-5xl text-4xl font-semibold">
-                    <i class="fa-brands fa-html5"></i>
-                    <i class="fa-brands fa-css3-alt"></i>
-                    <i class="fa-brands fa-square-js"></i>
-                    <i class="fa-solid fa-database"></i>
-
-                </div>
-                <div class="flex justify-between gap-20 mt-4 text-sm md:text-lg">
-                    <a
-                        class="duration-300 text-white font-bold text-center hover:bg-cyan-800 bg-cyan-600 p-3 rounded-xl shadow-lg" 
-                        href="https://poketeam-chog.netlify.app/"
-                        target="_blank">
-                            Website
-                    </a>
-                    <a
-                        class="duration-300 text-white font-bold text-center hover:bg-cyan-800 bg-cyan-600 p-3 rounded-xl shadow-lg" 
-                        href="https://github.com/ChogLight/poketeam"
-                        target="_blank">
-                            Github
-                    </a>
-                </div>
+        <!-- LinkedIn link and email(email shows mobile only) -->
+        <div class="grid md:grid-rows-1 grid-rows-2 grid-cols-1 gap-5">
+            <div class="relative bg-[#0077b5]  rounded-xl flex flex-col gap-3 items-center justify-center px-10 py-16">
+                <i class="fa-brands fa-linkedin md:text-7xl text-4xl"></i>
+                <a href="https://www.linkedin.com/in/jsgalvis/" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
-            <div>
-                <h3 class="text-white md:text-3xl text-xl font-bold my-10">Expenses control</h3>
-                <button on:click={() => {
-                    content = expensesContent;
-                    modular = true;
-                }}>
-                    <img class="md:rounded-3xl rounded-lg mb-5" src="/expenses-control.png" alt="poketeam"/>
-                </button>
-                <div class="flex gap-3 text-white md:text-5xl text-4xl font-semibold">
-                    <i class="fa-brands fa-html5"></i>
-                    <i class="fa-brands fa-css3-alt"></i>
-                    <i class="fa-brands fa-react"></i>
-                </div>
-                
-                <div class="text-sm md:text-lg flex justify-between mt-4">
-                    <a
-                        class="duration-300 text-white font-bold text-center hover:bg-cyan-800 bg-cyan-600 p-3 rounded-xl shadow-lg" 
-                        href="https://expenses-control-chog.netlify.app/"
-                        target="_blank">
-                            Website
-                    </a>
-                    <a
-                        class="duration-300 text-white font-bold text-center hover:bg-cyan-800 bg-cyan-600 p-3 rounded-xl shadow-lg" 
-                        href="https://github.com/ChogLight/expenses-control"
-                        target="_blank">
-                            Github
-                    </a>
-                </div>
+            <div class="md:hidden bg-emerald-300 rounded-xl flex items-center justify-center relative">
+                <i class="fa-solid fa-envelope md:text-7xl text-4xl"></i>
+                <a href="mailto:sebas8812@gmail.com" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
-            <div>
-                <h3 class="text-white md:text-3xl text-xl font-bold my-10">PFCOneNet</h3>
-                <button on:click={() =>{
-                    content = pfcContent;
-                    modular = true
-                }}>
-                    <img class="md:rounded-3xl rounded-lg mb-5" src="/pfc-onenet.png" alt="pfcone"/>
-                </button>
-                
-                <div class="flex gap-3 text-white md:text-5xl text-4xl font-semibold">
-                    <i class="fa-brands fa-html5"></i>
-                    <i class="fa-brands fa-bootstrap"></i>
-                    <i class="fa-brands fa-square-js"></i>
-                    <i class="fa-brands fa-node-js"></i>
-                </div>
-            
-            </div>
-            
-    
         </div>
-        <!--My experience-->
-        <div id="my-experience" class="py-20">
-            <h1 class="md:text-6xl text-4xl font-bold text-white mb-10">My experience</h1>
-            <div>
-                <div class="md:flex justify-between">
-                    <h3 class="text-2xl md:text-4xl font-bold">Math, Programming and Chemistry Tutor</h3>
-                    <h3 class="mt-5 md:mt-0 text-2xl md:text-4xl font-semibold">April 2021-Present</h3>
-                </div>
-                <div class="md:flex justify-between mt-5">
-                    <h5 class="text-lg md:text-xl italic">Paper tutoring</h5>
-                    <h5 class="mt-5 md:mt-0 text-lg md:text-xl italic">Toronto, ON</h5>
-                    
-                </div>
-                <ul class="mt-10 md:text-lg text-sm text-justify list-disc list-inside">
-                    <li>Tutored students of multiple ages (K-12) in subjects as programming, chemistry, and math using a chat-based software.</li>
-                    <li>Graded other's tutor sessions to assure the quality of the tutoring service.</li>
-                    <li>Created a clone of the chat tool and added dark mode.</li>
-                </ul>
+        <!-- Projects -->
+        <div class="md:col-span-2 bg-[url('/projects.gif')] rounded-xl relative col-span-3">
+            <div class="w-full h-full flex flex-col gap-5 p-7 justify-left bg-purple-900/50 backdrop-brightness-75 rounded-xl">
+                <h1 class="text-4xl font-bold">Projects</h1>
+                <p class="text-lg font-semibold">
+                    Check out some of my side projects and experiments such as PokeTeam and the budget calculator!
+                </p>
             </div>
-            <div class="mt-20">
-                <div class="md:flex justify-between">
-                    <h3 class="text-2xl md:text-4xl font-bold">Software engineering technician</h3>
-                    <h3 class="mt-5 md:mt-0 text-2xl md:text-4xl font-semibold">January 2022- June 2022</h3>
+            <i class="fa-solid fa-arrow-right absolute top-0 right-0 mr-8 mt-5 text-xl"></i>
+        </div>
+        <!-- Github -->
+        <div class="md:col-span-2 bg-[url('/github.gif')] rounded-xl h-72 relative col-span-3">
+            <div class="w-full h-full flex flex-col gap-5 p-7 justify-between bg-black/30 backdrop-brightness-75 rounded-xl">
+                <i class="fa-brands fa-github left-0 top-0 text-4xl ml-2 mt-2"></i>
+                <div class="flex flex-col gap-3">
+                    <h1 class="text-4xl font-bold"> Github</h1>
+                    <p class="text-lg">Check out my Github page where all (or almost all) my projects are!</p>
                 </div>
-                <div class="md:flex justify-between mt-5">
-                    <h5 class="text-lg md:text-xl italic">Centennial College/PFC flexible circuits</h5>
-                    <h5 class="md:mt-0 mt-5 text-lg md:text-xl italic">Toronto, ON</h5>
-                    
-                </div>
-                <ul class="mt-10 md:text-lg text-sm text-justify list-disc list-inside">
-                    <li>Participated in the building of an intranet for a circuits company.</li>
-                    <li>Managed the Github repository and merged the commits when correctly tested.</li>
-                    <li>Build UI of the intranet using EJS.</li>
-                    <li>Helped in the bulding of the website backend using Express.js resulting in a functional authentication system</li>
-                </ul>
+                <a href="https://github.com/ChogLight" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
+        </div>
+        <!-- Tech stack -->
+        <div class="p-5 md:p-0 col-span-3 md:col-span-1 bg-pink-300 rounded-xl flex justify-center items-center">
+            <div class="grid grid-cols-4 gap-4 gap-y-4 text-5xl place-content-center">
+                <i class="fa-brands fa-html5"></i>
+                <i class="fa-brands fa-css3-alt"></i>
+                <i class="fa-brands fa-react"></i>
+                <i class="fa-brands fa-node-js"></i>
+                <i class="fa-brands fa-python"></i>
+                <i class="fa-brands fa-git-alt"></i>
+                <i class="devicon-svelte-plain"></i>
+                <i class="devicon-nextjs-original"></i>
+                <i class="devicon-mongodb-plain-wordmark"></i>
+                <i class="devicon-tailwindcss-plain"></i>
+                <i class="devicon-express-original"></i>
+                <i class="devicon-javascript-plain"></i>
+            </div>
+        </div>
+        <!-- Email -->
+        <div class=" md:flex hidden bg-emerald-300 rounded-xl items-center justify-center relative">
+            <i class="fa-solid fa-envelope text-7xl"></i>
+            <a href="mailto:sebas8812@gmail.com" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+        <div>
+            
         </div>
         
-    </div>
+   </div>
 </div>
 
 
-<svelte:window bind:scrollY={y}/>
+
 
 
