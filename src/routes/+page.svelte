@@ -57,7 +57,7 @@
                         class="inline-block pl-[0.15rem] hover:cursor-pointer md:text-lg text-xs font-bold"
                         for="flexSwitchCheckDefault"
                         >
-                        Dark Mode
+                        {darkMode? 'Dark mode': 'Light mode'}
                     </label>
             </div>
             
