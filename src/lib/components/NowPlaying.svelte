@@ -5,12 +5,12 @@
 <div class='text-sm col-span-2 text-white border-2 p-4 pl-5 py-2 rounded-lg h-[300px] w-[300px] bg-black/30 backdrop-brightness-75'>
 
     {#if song.isPlaying}
-        <div class="audio relative m-0 p-0 mr-1 top-0 inline bg-gray-500">
+        <p class="font-bold">I'm listening now to:</p>
+        <div class="audio relative m-0 p-0 mr-1 top-0 right-0 inline bg-gray-500">
             <span></span>
             <span></span>
             <span></span>
         </div>
-
         <span class="leading-0"><span class="font-semibold ml-4"><a href={song.songUrl} rel="noopener noreferrer" target="_blank" class="hover:underline">{song.title}</a></span> - {song.artist}</span>
 
     {:else}

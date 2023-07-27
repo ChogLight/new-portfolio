@@ -29,7 +29,7 @@
         <!-- About me -->
         <div class="md:flex gap-2 bg-purple-900 text-white rounded-xl col-span-3">
             <div class="flex flex-col gap-4 my-16 p-5 self-end">
-                <h1 class="text-4xl font-bold">👋 Hi! I'm Juan Galvis</h1>
+                <h1 class="text-4xl font-bold"><span class="inline"><img width="30px" src="/hand.gif" alt="hand"></span> Hi! I'm Juan Galvis</h1>
                 <p class="text-sm font-semibold text-left">
                     I'm a full stack developer gratuated from Centennial College in Toronto Canada. 
                     I can assure you that my coding skills, professionalism, team work, and curiosity are great assets to bring to your company.
@@ -131,6 +131,7 @@
             <i class="fa-solid fa-envelope text-7xl"></i>
             <a href="mailto:sebas8812@gmail.com" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
+        <!-- Spotify listening to: -->
         <div 
             style={`background-image: url(${data.body.albumImageUrl})`}
             class={`md:col-span-1 bg-no-repeat rounded-xl relative col-span-3 h-[300px] w-[300px]`}>
