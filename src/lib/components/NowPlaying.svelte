@@ -2,7 +2,7 @@
     export let song = {}
 </script>
 
-<div class='text-sm col-span-2 text-white border-2 p-4 pl-5 py-2 rounded-lg h-72 bg-black/30 backdrop-brightness-75'>
+<div class='text-sm col-span-2 text-white border-2 p-4 pl-5 py-2 rounded-lg h-[300px] w-[300px] bg-black/30 backdrop-brightness-75'>
 
     {#if song.isPlaying}
         <div class="audio relative m-0 p-0 mr-1 top-0 inline bg-gray-500">
