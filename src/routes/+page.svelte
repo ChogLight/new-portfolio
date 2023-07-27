@@ -133,7 +133,7 @@
         </div>
         <!-- Spotify listening to: -->
         <div 
-            style={`background-image: url(${data.body.albumImageUrl})`}
+            style={`background-image: url(${data.body.isPlaying?data.body.albumImageUrl:'/spotify.png'})`}
             class={`md:col-span-1 bg-no-repeat rounded-xl relative col-span-3 h-[300px] w-[300px]`}>
             <NowPlaying song = {data.body}/>
             
