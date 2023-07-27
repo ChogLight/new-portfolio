@@ -4,7 +4,15 @@
     import Typewriter from "svelte-typewriter/Typewriter.svelte";
     import { browser } from '$app/environment';
     import NowPlaying from "../lib/components/NowPlaying.svelte";
+	import { onMount } from "svelte";
     export let data
+    let song = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve({body:{
+                isPlaying:false
+            }});
+        }, 300)
+    });
     let darkMode = true
     let languages = ['Javascript', 'HTML', 'CSS', 'TailwindCSS', 'React','Next.js', 'Express', 'Git', 'Svelte', 'Figma', 'Python']
     function handleSwitchDarkMode() {
@@ -23,6 +31,36 @@
             darkMode = false;
         }
     }
+    onMount(async() => {
+        song = await getSong()
+    })
+    async function getSong(){
+        const now_playing_endpoint = `https://api.spotify.com/v1/me/player/currently-playing`;
+        const res = await fetch(now_playing_endpoint, {
+            headers: {
+                Authorization: `Bearer ${data.body.access_token}`
+            }
+        })
+
+        if (res.status === 204 || res.status > 400) {
+            return {body: { isPlaying: false }}
+        }
+
+        const song = await res.json();
+        const isPlaying = song.is_playing;
+        const title = song.item.name;
+        const artist = song.item.artists.map((_artist) => _artist.name).join(', ');
+        const album = song.item.album.name;
+        const albumImageUrl = song.item.album.images[1].url;
+        const songUrl = song.item.external_urls.spotify;
+
+        return {
+        body: {title, artist, album, isPlaying, albumImageUrl, songUrl},
+        }
+    }
+    setInterval(async() => {
+        song = await getSong()
+    },5000)
 </script>
 <div class="text-white w-5/6  m-auto my-10">
    <div class="grid md:grid-cols-4 grid-cols-3 gap-5 bg-transparent">
@@ -132,12 +170,17 @@
             <a href="mailto:sebas8812@gmail.com" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
         <!-- Spotify listening to: -->
-        <div 
-            style={`background-image: url(${data.body.isPlaying?data.body.albumImageUrl:'/spotify.png'})`}
+        {#await song}
+            <p>loading</p>
+        {:then song}
+            <div 
+            style={`background-image: url(${song.body.isPlaying ?song.body.albumImageUrl:'/spotify.png'})`}
             class={`md:col-span-1 bg-no-repeat rounded-xl relative col-span-3 h-[300px] w-[300px]`}>
-            <NowPlaying song = {data.body}/>
+                <NowPlaying song = {song.body}/>
             
-        </div>
+            </div>
+        {/await}
+        
         
    </div>
 </div>
