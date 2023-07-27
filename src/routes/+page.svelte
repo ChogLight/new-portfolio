@@ -133,7 +133,7 @@
         </div>
         <div 
             style={`background-image: url(${data.body.albumImageUrl})`}
-            class={`md:col-span-1 bg-no-repeat rounded-xl relative col-span-3 h-72`}>
+            class={`md:col-span-1 bg-no-repeat rounded-xl relative col-span-3 h-[300px] w-[300px]`}>
             <NowPlaying song = {data.body}/>
             
         </div>
