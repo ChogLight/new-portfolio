@@ -1,7 +1,10 @@
 
 <script>
+    /** @type {import('./$types').PageData} */
     import Typewriter from "svelte-typewriter/Typewriter.svelte";
     import { browser } from '$app/environment';
+    import NowPlaying from "../lib/components/NowPlaying.svelte";
+    export let data
     let darkMode = true
     let languages = ['Javascript', 'HTML', 'CSS', 'TailwindCSS', 'React','Next.js', 'Express', 'Git', 'Svelte', 'Figma', 'Python']
     function handleSwitchDarkMode() {
@@ -128,7 +131,10 @@
             <i class="fa-solid fa-envelope text-7xl"></i>
             <a href="mailto:sebas8812@gmail.com" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
-        <div>
+        <div 
+            style={`background-image: url(${data.body.albumImageUrl})`}
+            class={`md:col-span-1 bg-no-repeat rounded-xl relative col-span-3 h-72`}>
+            <NowPlaying song = {data.body}/>
             
         </div>
         
