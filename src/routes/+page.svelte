@@ -53,14 +53,16 @@
         const album = song.item.album.name;
         const albumImageUrl = song.item.album.images[1].url;
         const songUrl = song.item.external_urls.spotify;
-
+        const progress = song.progress_ms
+        const duration = song.item.duration_ms
         return {
-        body: {title, artist, album, isPlaying, albumImageUrl, songUrl},
+        body: {title, artist, album, isPlaying, albumImageUrl, songUrl, progress, duration},
         }
     }
+    
     setInterval(async() => {
         song = await getSong()
-    },5000)
+    },1000)
 </script>
 <div class="text-white w-5/6  m-auto my-10">
    <div class="grid md:grid-cols-4 grid-cols-3 gap-5 bg-transparent">
