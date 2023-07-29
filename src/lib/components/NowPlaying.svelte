@@ -13,17 +13,19 @@
         </div>
         <span class="leading-0"><span class="font-semibold ml-4"><a href={song.songUrl} rel="noopener noreferrer" target="_blank" class="hover:underline">{song.title}</a></span> - {song.artist}</span>
         <div class="absolute bottom-0 mb-10 w-10/12">
-            <div class="flex gap-7">
-                <p class="text-xs">00:00</p>
+           
                 <input
               type="range"
+              disabled
               class="transparent h-1.5 w-full cursor-pointer appearance-none rounded-lg border-transparent bg-neutral-200"
               id="customRange1"
               min = {0}
               max = {song.duration/60000}
-              step={0.001}
+              step={0.01}
               value = {song.progress/60000} />
-                <!-- <p class="text-xs">{`${song.duration/60000}`}</p> -->
+              <div class="flex justify-between">
+                <p class="text-xs font-bold">{new Date(song.progress).toISOString().slice(14, 19)}</p>
+                <p class="text-xs font-bold">{new Date(song.duration).toISOString().slice(14, 19)}</p>
             </div>
           </div>
 
