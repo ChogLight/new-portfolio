@@ -61,8 +61,18 @@
     }
     
     setInterval(async() => {
+    song = await getSong()
+    if((await getSong()).body.isPlaying){
+        let songApi = setInterval(async() => {
         song = await getSong()
-    },1000)
+        if(song.body.isPlaying === false){
+            clearInterval(songApi)
+        }
+        },1000)
+    }
+    },60000)
+
+    
 </script>
 <div class="text-white w-5/6  m-auto my-10">
    <div class="grid md:grid-cols-4 grid-cols-3 gap-5 bg-transparent">
