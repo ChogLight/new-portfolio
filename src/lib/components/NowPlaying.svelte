@@ -1,11 +1,12 @@
 <script>
     export let song = {}
+    import {t, locale, locales} from './i18n.js'
 </script>
 
 <div class='relative text-sm text-white border-2 p-4 pl-5 py-2 rounded-lg h-[300px] w-[300px] bg-black/30 backdrop-brightness-75'>
 
     {#if song.isPlaying}
-        <p class="font-bold">I'm listening now to:</p>
+        <p class="font-bold">{@html $t("spotify.nowlistening")}</p>
         <div class="audio relative m-0 p-0 mr-1 top-0 right-0 inline bg-gray-500">
             <span></span>
             <span></span>

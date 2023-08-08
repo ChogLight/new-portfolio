@@ -1,11 +1,13 @@
 
 <script>
     /** @type {import('./$types').PageData} */
+    import {t, locale, locales} from '../lib/components/i18n.js'
     import Typewriter from "svelte-typewriter/Typewriter.svelte";
     import { browser } from '$app/environment';
     import NowPlaying from "../lib/components/NowPlaying.svelte";
 	import { onMount } from "svelte";
     export let data
+    // Initial value for spotify
     let song = new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve({body:{
@@ -13,8 +15,10 @@
             }});
         }, 300)
     });
+    //Dark mode
     let darkMode = true
     let languages = ['Javascript', 'HTML', 'CSS', 'TailwindCSS', 'React','Next.js', 'Express', 'Git', 'Svelte', 'Figma', 'Python']
+    //Dark mode switch
     function handleSwitchDarkMode() {
         darkMode = !darkMode;
 
@@ -22,6 +26,7 @@
             ? document.documentElement.classList.add('dark')
             : document.documentElement.classList.remove('dark');
     }
+    //Dark mode changer
     if (browser) {
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
             document.documentElement.classList.add('dark');
@@ -34,6 +39,8 @@
     onMount(async() => {
         song = await getSong()
     })
+
+    //Get playing song
     async function getSong(){
         const now_playing_endpoint = `https://api.spotify.com/v1/me/player/currently-playing`;
         const res = await fetch(now_playing_endpoint, {
@@ -60,6 +67,7 @@
         }
     }
     
+    //If song is playing short interval (1s) if not long interval (60s)
     setInterval(async() => {
     song = await getSong()
     if((await getSong()).body.isPlaying){
@@ -70,7 +78,7 @@
         }
         },1000)
     }
-    },60000)
+    },20000)
 
     
 </script>
@@ -79,11 +87,12 @@
         <!-- About me -->
         <div class="md:flex gap-2 bg-purple-900 text-white rounded-xl col-span-3">
             <div class="flex flex-col gap-4 my-16 p-5 self-end">
-                <h1 class="text-4xl font-bold"><span class="inline"><img width="30px" src="/hand.gif" alt="hand"></span> Hi! I'm Juan Galvis</h1>
-                <p class="text-sm font-semibold text-left">
-                    I'm a full stack developer gratuated from Centennial College in Toronto Canada. 
-                    I can assure you that my coding skills, professionalism, team work, and curiosity are great assets to bring to your company.
-                    My skill set consists in:
+                <div class="flex gap-5">
+                    <h1 class="text-4xl font-bold">{@html $t("homepage.title")}</h1>
+                    <img width="40px" src="/hand.gif" alt="hand">
+                </div>
+                <p class="md:text-lg text-sm text-left">
+                   {@html $t("homepage.welcome")}
                         <Typewriter  --cursor-color="#7a117f" --cursor-width="10px" mode="loop" interval="50" unwriteInterval= "50">
                             {#each languages as language}
                             <h1 class="md:text-6xl text-2xl font-bold">{language}</h1>
@@ -95,8 +104,14 @@
         </div>
         <!-- Language and dark mode -->
         <div class="grid grid-rows-2 gap-5 place-items-stretch">
-            <div class=" bg-purple-900 rounded-xl flex items-center justify-center">
-                <h1 class="">EN</h1>
+            <div class=" bg-purple-900 rounded-xl flex flex-col items-center justify-center">
+                <h1 class="md:text-6xl text-4xl font-bold">
+                    <select class="bg-purple-900 capitalize p-3" bind:value={$locale}>
+                        {#each locales as l}
+                          <option class=" capitalize text-3xl" value={l}>{l}</option>
+                        {/each}
+                      </select>
+                </h1>
             </div>
             <div class=" bg-purple-900 rounded-xl flex flex-col gap-3 items-center justify-center p-2 md:p-0">
                 <input
@@ -115,20 +130,13 @@
             </div>
             
         </div>
-        <!-- Age -->
-        <div class=" bg-red-500 rounded-xl flex flex-col gap-3 items-center justify-center px-10 py-16">
-            <p class="text-sm">
-                AGE
-            </p>
-            <h1 class="text-6xl font-bold">
-                28
-            </h1>
-            <h4 class="text-xl font-semibold">
-                Years old
-            </h4>
+         <!-- Email -->
+         <div class=" md:flex hidden bg-emerald-300 rounded-xl items-center justify-center relative h-64 col-span-2 md:col-span-1">
+            <i class="fa-solid fa-envelope text-7xl"></i>
+            <a href="mailto:sebas8812@gmail.com" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
         <!-- LinkedIn link and email(email shows mobile only) -->
-        <div class="grid md:grid-rows-1 grid-rows-2 grid-cols-1 gap-5">
+        <div class="grid md:grid-rows-1 grid-rows-2 grid-cols-1 gap-5 col-span-2 md:col-span-1">
             <div class="relative bg-[#0077b5]  rounded-xl flex flex-col gap-3 items-center justify-center px-10 py-16">
                 <i class="fa-brands fa-linkedin md:text-7xl text-4xl"></i>
                 <a href="https://www.linkedin.com/in/jsgalvis/" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
@@ -141,12 +149,12 @@
         <!-- Projects -->
         <div class="md:col-span-2 bg-[url('/projects.gif')] rounded-xl relative col-span-3">
             <div class="w-full h-full flex flex-col gap-5 p-7 justify-left bg-purple-900/50 backdrop-brightness-75 rounded-xl">
-                <h1 class="text-4xl font-bold">Projects</h1>
+                <h1 class="text-4xl font-bold">{@html $t("homepage.projects.title")}</h1>
                 <p class="text-lg font-semibold">
-                    Check out some of my side projects and experiments such as PokeTeam and the budget calculator!
+                    {@html $t("homepage.projects.content")}
                 </p>
             </div>
-            <i class="fa-solid fa-arrow-right absolute top-0 right-0 mr-8 mt-5 text-xl"></i>
+            <a href="/projects"><i class="fa-solid fa-arrow-right absolute top-0 right-0 mr-8 mt-5 text-xl"></i></a>
         </div>
         <!-- Github -->
         <div class="md:col-span-2 bg-[url('/github.gif')] rounded-xl h-72 relative col-span-3">
@@ -154,7 +162,7 @@
                 <i class="fa-brands fa-github left-0 top-0 text-4xl ml-2 mt-2"></i>
                 <div class="flex flex-col gap-3">
                     <h1 class="text-4xl font-bold"> Github</h1>
-                    <p class="text-lg">Check out my Github page where all (or almost all) my projects are!</p>
+                    <p class="text-lg">{@html $t("homepage.github.content")}</p>
                 </div>
                 <a href="https://github.com/ChogLight" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
@@ -176,22 +184,21 @@
                 <i class="devicon-javascript-plain"></i>
             </div>
         </div>
-        <!-- Email -->
-        <div class=" md:flex hidden bg-emerald-300 rounded-xl items-center justify-center relative">
-            <i class="fa-solid fa-envelope text-7xl"></i>
-            <a href="mailto:sebas8812@gmail.com" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-        </div>
-        <!-- Spotify listening to: -->
+        <!-- Spotify listening to:-->
         {#await song}
-            <p>loading</p>
+        <p>loading</p>
         {:then song}
-            <div 
-            style={`background-image: url(${song.body.isPlaying ?song.body.albumImageUrl:'/spotify.png'})`}
-            class={`md:col-span-1 bg-no-repeat rounded-xl relative col-span-3 h-[300px] w-[300px]`}>
-                <NowPlaying song = {song.body}/>
-            
+            <div class="bg-slate-500 col-span-3 md:col-span-1 rounded-xl flex justify-center">
+                <div 
+                style={`background-image: url(${song.body.isPlaying ?song.body.albumImageUrl:'/spotify.png'})`}
+                class={`md:col-span-1 bg-no-repeat rounded-xl relative col-span-3 h-[300px] w-[300px]`}>
+                    <NowPlaying song = {song.body}/>
+                
+                </div>
             </div>
+            
         {/await}
+       
         
         
    </div>
