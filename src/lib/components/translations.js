@@ -24,7 +24,7 @@ export default {
       "homepage.age.statement" : "Años",
       "homepage.projects.title": "Proyectos",
       "homepage.projects.content": "¡Revisa algunos de mis proyectos tales como PokeTeam o la calculadora de presupuestos!",
-      "homepage.github.content": "¡Revisa mi página de Github donde todos (o al menos todos) mis proyectos están!",
+      "homepage.github.content": "¡Revisa mi página de Github donde todos (o casi todos) mis proyectos están!",
       "spotify.nowlistening": "Escuchando justo ahora:",
       "projects.poketeam.description": "El projecto PokeTeam es uno de mis side projects. Este consiste en un sitio web usado para construir tu propio equipo Pokemon y guardarlos. Para construir estos equipos puedes buscar en la Pokedex actualizada y podrás ver cada habilidad, movimientos, debilidades, y más de cada Pokemon. ¡El proyecto nació como una simple Pokedex y evolucionó para ser la actual página PokeTeam!",
       "projects.expenses.title":"Aplicación de control de gastos",

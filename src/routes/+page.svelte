@@ -87,9 +87,9 @@
         <!-- About me -->
         <div class="md:flex gap-2 bg-purple-900 text-white rounded-xl col-span-3">
             <div class="flex flex-col gap-4 my-16 p-5 self-end">
-                <div class="flex gap-5">
+                <div class="flex md:flex-row flex-col gap-5">
                     <h1 class="text-4xl font-bold">{@html $t("homepage.title")}</h1>
-                    <img width="40px" src="/hand.gif" alt="hand">
+                    <img width='40px' src="/hand.gif" alt="hand">
                 </div>
                 <p class="md:text-lg text-sm text-left">
                    {@html $t("homepage.welcome")}
