@@ -93,7 +93,7 @@
             <div class="flex flex-col gap-4 my-16 p-5 self-end">
                 <div class="flex md:flex-row flex-col gap-5">
                     <h1 class="text-4xl font-bold">{@html $t("homepage.title")}</h1>
-                    <img width='40px' height="50px" src="/hand.gif" alt="hand">
+                    <img width='40px' height="50px" src="/hand.webp" alt="hand">
                 </div>
                 <p class="md:text-lg text-sm text-left">
                    {@html $t("homepage.welcome")}
@@ -151,7 +151,7 @@
             </div>
         </div>
         <!-- Projects -->
-        <div class="md:col-span-2 bg-[url('/projects.gif')] rounded-xl relative col-span-3">
+        <div class="md:col-span-2 bg-[url('/projects.webp')] rounded-xl relative col-span-3">
             <div class="w-full h-full flex flex-col gap-5 p-7 justify-left bg-purple-900/50 backdrop-brightness-75 rounded-xl">
                 <h1 class="text-4xl font-bold">{@html $t("homepage.projects.title")}</h1>
                 <p class="text-lg font-semibold">
@@ -161,8 +161,16 @@
             <a href="/projects"><i class="fa-solid fa-arrow-right absolute top-0 right-0 mr-8 mt-5 text-xl"></i></a>
         </div>
         <!-- Github -->
-        <div class="md:col-span-2 bg-[url('/github.gif')] rounded-xl h-72 relative col-span-3">
-            <div class="w-full h-full flex flex-col gap-5 p-7 justify-between bg-black/30 backdrop-brightness-75 rounded-xl">
+        <div class="md:col-span-2 bg-[url('/github.mp4')] rounded-xl  relative col-span-3">
+            <div class="w-full h-full z-1 absolute rounded-xl flex bg-white">
+                <video class="rounded-xl" autoplay muted loop id="/github.mp4">
+                    <source src="/github.mp4" type="video/mp4">
+                  </video>
+                  <video class="rounded-xl md:block hidden" autoplay muted loop id="/github.mp4">
+                    <source src="/github.mp4" type="video/mp4">
+                  </video>
+            </div>
+            <div class="w-full h-full flex flex-col gap-5 p-7 justify-between bg-black/30 backdrop-brightness-75 rounded-xl z-2">
                 <i class="fa-brands fa-github left-0 top-0 text-4xl ml-2 mt-2"></i>
                 <div class="flex flex-col gap-3">
                     <h1 class="text-4xl font-bold"> Github</h1>
@@ -194,7 +202,7 @@
         {:then song}
             <div class="bg-slate-500 col-span-3 md:col-span-1 rounded-xl flex justify-center">
                 <div 
-                style={`background-image: url(${song.body.isPlaying ?song.body.albumImageUrl:'/spotify.png'})`}
+                style={`background-image: url(${song.body.isPlaying ?song.body.albumImageUrl:'/spotify.webp'})`}
                 class={`md:col-span-1 bg-no-repeat rounded-xl relative col-span-3 h-[300px] w-[300px]`}>
                     <NowPlaying song = {song.body}/>
                 
