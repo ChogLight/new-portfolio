@@ -69,19 +69,23 @@
     
     //If song is playing short interval (1s) if not long interval (60s)
     setInterval(async() => {
-    song = await getSong()
-    if((await getSong()).body.isPlaying){
-        let songApi = setInterval(async() => {
         song = await getSong()
-        if(song.body.isPlaying === false){
-            clearInterval(songApi)
+        if((await getSong()).body.isPlaying){
+            let songApi = setInterval(async() => {
+            song = await getSong()
+            if(song.body.isPlaying === false){
+                clearInterval(songApi)
+            }
+            },1000)
         }
-        },1000)
-    }
     },20000)
 
     
 </script>
+<svelte:head>
+	<title>Juan Galvis Portfolio | Home</title>
+	<meta name="portfolio" content="Portfolio home" />
+</svelte:head>
 <div class="text-white w-5/6  m-auto my-10">
    <div class="grid md:grid-cols-4 grid-cols-3 gap-5 bg-transparent">
         <!-- About me -->
@@ -89,7 +93,7 @@
             <div class="flex flex-col gap-4 my-16 p-5 self-end">
                 <div class="flex md:flex-row flex-col gap-5">
                     <h1 class="text-4xl font-bold">{@html $t("homepage.title")}</h1>
-                    <img width='40px' src="/hand.gif" alt="hand">
+                    <img width='40px' height="50px" src="/hand.gif" alt="hand">
                 </div>
                 <p class="md:text-lg text-sm text-left">
                    {@html $t("homepage.welcome")}
@@ -100,7 +104,7 @@
                         </Typewriter>                    
                 </p>
             </div>
-            <img class="" src="/profile_pic.png" alt="profile_pic"/>
+            <img width="450px" height="600px" class="" src="/profile_pic.webp" alt="profile_pic"/>
         </div>
         <!-- Language and dark mode -->
         <div class="grid grid-rows-2 gap-5 place-items-stretch">

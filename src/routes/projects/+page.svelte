@@ -12,6 +12,11 @@
         }
     }
 </script>
+<svelte:head>
+	<title>Juan Galvis Portfolio | Projects </title>
+	<meta name="portfolio" content="Portfolio projects" />
+	<html lang="en" />
+</svelte:head>
 <a class="absolute top-0 left-0 text-xl md:ml-6 md:mt-6 ml-4 mt-4 text-white" href="/"><i class="fa-solid fa-house"></i></a>
 <div class="text-white w-5/6 m-auto md:my-10 my-16 relative">
    
