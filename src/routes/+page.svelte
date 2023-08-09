@@ -203,7 +203,7 @@
             <div class="bg-slate-500 col-span-3 md:col-span-1 rounded-xl flex justify-center">
                 <div 
                 style={`background-image: url(${song.body.isPlaying ?song.body.albumImageUrl:'/spotify.webp'})`}
-                class={`md:col-span-1 bg-no-repeat rounded-xl relative col-span-3 h-[300px] w-[300px]`}>
+                class={`md:col-span-1 rounded-xl relative col-span-3 h-[300px] w-[300px]`}>
                     <NowPlaying song = {song.body}/>
                 
                 </div>
