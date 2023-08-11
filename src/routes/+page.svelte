@@ -84,7 +84,9 @@
 </script>
 <svelte:head>
 	<title>Juan Galvis Portfolio | Home</title>
-	<meta name="portfolio" content="Portfolio home" />
+	<meta name="description" content="Welcome to my portfolio!" />
+    <meta name="keywords" content="HTML, CSS, JavaScript, React, Svelte, Sveltekit">
+    <meta name="author" content="Juan Sebastian Galvis Chaves">
 </svelte:head>
 <div class="text-white w-5/6  m-auto my-10">
    <div class="grid md:grid-cols-4 grid-cols-3 gap-5 bg-transparent">
@@ -135,33 +137,41 @@
             
         </div>
          <!-- Email -->
-         <div class=" md:flex hidden bg-emerald-300 rounded-xl items-center justify-center relative h-64 col-span-2 md:col-span-1">
+         <div class="group md:flex hidden bg-emerald-300 rounded-xl items-center justify-center relative h-64 col-span-2 md:col-span-1">
             <i class="fa-solid fa-envelope text-7xl"></i>
-            <a href="mailto:sebas8812@gmail.com" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="mailto:sebas8812@gmail.com" target="_blank" class="absolute top-0 right-0 m-5">
+                <i class="fa-solid fa-arrow-up-right-from-square group-hover:text-xl duration-300"/>
+            </a>
         </div>
         <!-- LinkedIn link and email(email shows mobile only) -->
         <div class="grid md:grid-rows-1 grid-rows-2 grid-cols-1 gap-5 col-span-2 md:col-span-1">
-            <div class="relative bg-[#0077b5]  rounded-xl flex flex-col gap-3 items-center justify-center px-10 py-16">
+            <div class="relative bg-[#0077b5]  rounded-xl flex flex-col gap-3 items-center justify-center px-10 py-16 group">
                 <i class="fa-brands fa-linkedin md:text-7xl text-4xl"></i>
-                <a href="https://www.linkedin.com/in/jsgalvis/" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="https://www.linkedin.com/in/jsgalvis/" target="_blank" class="absolute top-0 right-0 m-5">
+                    <i class="fa-solid fa-arrow-up-right-from-square group-hover:text-white group-hover:text-xl duration-300"/>
+                </a>
             </div>
-            <div class="md:hidden bg-emerald-300 rounded-xl flex items-center justify-center relative">
+            <div class="md:hidden bg-emerald-300 rounded-xl flex items-center justify-center relative group">
                 <i class="fa-solid fa-envelope md:text-7xl text-4xl"></i>
-                <a href="mailto:sebas8812@gmail.com" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="mailto:sebas8812@gmail.com" target="_blank" class="absolute top-0 right-0 m-5">
+                    <i class="fa-solid fa-arrow-up-right-from-square"/>
+                </a>
             </div>
         </div>
         <!-- Projects -->
-        <div class="md:col-span-2 bg-[url('/projects.webp')] rounded-xl relative col-span-3">
+        <div class="md:col-span-2 bg-[url('/projects.webp')] rounded-xl relative col-span-3 group">
             <div class="w-full h-full flex flex-col gap-5 p-7 justify-left bg-purple-900/50 backdrop-brightness-75 rounded-xl">
                 <h1 class="text-4xl font-bold">{@html $t("homepage.projects.title")}</h1>
                 <p class="text-lg font-semibold">
                     {@html $t("homepage.projects.content")}
                 </p>
             </div>
-            <a href="/projects"><i class="fa-solid fa-arrow-right absolute top-0 right-0 mr-8 mt-5 text-xl"></i></a>
+            <a href="/projects">
+                <i class="fa-solid fa-arrow-right absolute top-0 right-0 mr-8 mt-5 text-xl group-hover:text-2xl duration-300"/>
+            </a>
         </div>
         <!-- Github -->
-        <div class="md:col-span-2 bg-[url('/github.mp4')] rounded-xl  relative col-span-3">
+        <div class="md:col-span-2 rounded-xl  relative col-span-3 group">
             <div class="w-full h-full z-1 absolute rounded-xl flex bg-white">
                 <video class="rounded-xl" autoplay muted loop id="/github.mp4">
                     <source src="/github.mp4" type="video/mp4">
@@ -176,7 +186,9 @@
                     <h1 class="text-4xl font-bold"> Github</h1>
                     <p class="text-lg">{@html $t("homepage.github.content")}</p>
                 </div>
-                <a href="https://github.com/ChogLight" target="_blank" class="absolute top-0 right-0 m-5"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="https://github.com/ChogLight" target="_blank" class="absolute top-0 right-0 m-5">
+                    <i class="fa-solid fa-arrow-up-right-from-square group-hover:text-xl duration-300"/>
+                </a>
             </div>
         </div>
         <!-- Tech stack -->
@@ -198,7 +210,7 @@
         </div>
         <!-- Spotify listening to:-->
         {#await song}
-        <p>loading</p>
+            <p>loading</p>
         {:then song}
             <div class="bg-slate-500 col-span-3 md:col-span-1 rounded-xl flex justify-center">
                 <div 
