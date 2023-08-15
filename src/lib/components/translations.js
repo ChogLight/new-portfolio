@@ -1,7 +1,7 @@
 export default {
     en: {
       "homepage.title": "Hi! I'm Juan Galvis",
-      "homepage.welcome": "I'm a full stack developer gratuated from Centennial College in Toronto Canada. I can assure you that my coding skills, professionalism, team work, and curiosity are great assets to bring to your company. My skill set consists in: ",
+      "homepage.welcome": "I'm a full stack developer graduated from Centennial College in Toronto Canada. I can assure you that my coding skills, professionalism, teamwork, and curiosity are great assets to bring to your company. My skill set consists in: ",
       "homepage.age": "AGE",
       "homepage.darkmode":"Dark mode",
       "homepage.lightmode":"Light mode",
